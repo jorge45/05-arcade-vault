@@ -25,6 +25,10 @@ There is no test runner configured yet.
 - **This is Next.js 16, which has breaking changes vs. older Next.js versions you may know from training data.** Before writing routing, data-fetching, or config code, check the relevant guide under `node_modules/next/dist/docs/` (organized into `01-app`, `02-pages`, `03-architecture`) and heed any deprecation notices there.
 - The `# This is NOT the Next.js you know` block in `AGENTS.md` is auto-generated/re-added by `next dev` (see `node_modules/next/dist/server/lib/generate-agent-files.js`). Leave it committed rather than stripping it out.
 
+## skills
+
+usa siempre /frontend-design Para hacer interfaces de usuario 
+
 ## Spec-driven design
 
 The project intends to follow spec-driven design using the `/spec` and `/spec-impl` skills from https://github.com/Klerith/fernando-skills, installable via:
