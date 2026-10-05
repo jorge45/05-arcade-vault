@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - link "ARCADE VAULT" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e7]:
+        - link "Inicio" [ref=e8] [cursor=pointer]:
+          - /url: /
+        - link "Biblioteca" [ref=e9] [cursor=pointer]:
+          - /url: /biblioteca
+        - link "Salón de la Fama" [ref=e10] [cursor=pointer]:
+          - /url: /salon-de-la-fama
+        - link "Acerca de" [ref=e11] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=e12]: CRÉDITOS · 03
+      - link "Iniciar Sesión" [ref=e15] [cursor=pointer]:
+        - /url: /iniciar-sesion
+    - complementary [ref=e16]:
+      - generic [ref=e17]: MENÚ
+      - link "Inicio" [ref=e18] [cursor=pointer]:
+        - /url: /
+      - link "Biblioteca" [ref=e19] [cursor=pointer]:
+        - /url: /biblioteca
+      - link "Salón de la Fama" [ref=e20] [cursor=pointer]:
+        - /url: /salon-de-la-fama
+      - link "Acerca de" [ref=e21] [cursor=pointer]:
+        - /url: /about
+      - link "Iniciar Sesión" [ref=e22] [cursor=pointer]:
+        - /url: /iniciar-sesion
+      - generic [ref=e24]: CRÉDITOS · 03
+    - main [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: ▸ ACERCA DE
+          - heading "ACERCA DE ARCADE VAULT" [level=1] [ref=e29]
+          - paragraph [ref=e30]: ARCADE VAULT nació del amor por los videojuegos clásicos. Nuestra misión es preservar y celebrar los arcades que definieron una generación, haciéndolos accesibles para todos, en cualquier lugar y sin costo.
+          - generic [ref=e31]:
+            - generic [ref=e32]: HECHO CON ❤️ PARA JUGADORES
+            - generic [ref=e47]: JUEGOS EN HTML — CORREN EN CUALQUIER NAVEGADOR
+            - generic [ref=e59]: PROYECTO EN CONSTANTE CRECIMIENTO
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - generic [ref=e101]: ▸ CONTACTO
+            - heading "CONTÁCTANOS" [level=2] [ref=e102]
+            - paragraph [ref=e103]: ¿Tienes alguna sugerencia, quieres proponer un juego, o simplemente quieres saludar? Escríbenos.
+            - generic [ref=e104]:
+              - generic [ref=e105]: RESPUESTA EN 24-48H
+              - generic [ref=e107]: SUGERENCIAS BIENVENIDAS
+              - generic [ref=e109]: SIN SPAM, JAMÁS
+          - generic [ref=e112]:
+            - generic [ref=e134]: VAULT-OS // TERMINAL
+            - generic [ref=e139]:
+              - generic [ref=e140]: vault@arcade:~$ ./send_message --to=team
+              - generic [ref=e141]: "[OK] Conectando con servidor…"
+              - generic [ref=e142]: "[OK] Validando contenido…"
+              - generic [ref=e143]: "[OK] Transmitiendo paquete…"
+              - generic [ref=e144]: "> MENSAJE RECIBIDO. TE RESPONDEREMOS PRONTO. GRACIAS, JORGE TEST._"
+              - button "ENVIAR OTRO MENSAJE" [ref=e146] [cursor=pointer]
+    - contentinfo [ref=e122]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=e128] [cursor=pointer]
+  - alert [ref=e132]

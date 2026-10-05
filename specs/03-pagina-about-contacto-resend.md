@@ -1,6 +1,6 @@
 # SPEC 03 — Página "About" y envío de correo de contacto con Resend
 
-> **Status:** Aprobado
+> **Status:** Implementado
 > **Depends on:** SPEC 01, SPEC 02
 > **Date:** 2026-10-05
 > **Objective:** Portar la pantalla "Acerca de" del prototipo (`references/resources/templates/home-about/about.jsx`) como la nueva ruta `/about`, y conectar su formulario de contacto a un envío real de correo electrónico vía Resend.

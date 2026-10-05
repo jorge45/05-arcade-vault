@@ -13,6 +13,7 @@ export default function Nav() {
   const isInicio = pathname === "/";
   const isBiblioteca = pathname === "/biblioteca" || pathname.startsWith("/juego");
   const isSalon = pathname === "/salon-de-la-fama";
+  const isAbout = pathname === "/about";
   const isAuth = pathname === "/iniciar-sesion";
 
   const close = () => setOpen(false);
@@ -28,6 +29,7 @@ export default function Nav() {
           <Link href="/" className={isInicio ? "active" : ""}>Inicio</Link>
           <Link href="/biblioteca" className={isBiblioteca ? "active" : ""}>Biblioteca</Link>
           <Link href="/salon-de-la-fama" className={isSalon ? "active" : ""}>Salón de la Fama</Link>
+          <Link href="/about" className={isAbout ? "active" : ""}>Acerca de</Link>
         </div>
         <div className="spacer"></div>
         <div className="coin-counter">
@@ -48,6 +50,7 @@ export default function Nav() {
         <Link href="/" className={isInicio ? "active" : ""} onClick={close}>Inicio</Link>
         <Link href="/biblioteca" className={isBiblioteca ? "active" : ""} onClick={close}>Biblioteca</Link>
         <Link href="/salon-de-la-fama" className={isSalon ? "active" : ""} onClick={close}>Salón de la Fama</Link>
+        <Link href="/about" className={isAbout ? "active" : ""} onClick={close}>Acerca de</Link>
         <Link href="/iniciar-sesion" className={isAuth ? "active" : ""} onClick={close}>{user ? "Cuenta" : "Iniciar Sesión"}</Link>
         <div style={{ flex: 1 }}></div>
         <div className="pixel" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: "0.16em" }}>CRÉDITOS · 03</div>
