@@ -18,6 +18,7 @@ export default function GamePlayer({ game }: { game: Game }) {
   const [over, setOver] = useState(false);
   const [name, setName] = useState(user ? user.name : "INVITADO");
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState(false);
   const [runId, setRunId] = useState(0);
   const asteroidsRef = useRef<AsteroidsGameHandle>(null);
 
@@ -47,6 +48,7 @@ export default function GamePlayer({ game }: { game: Game }) {
     setPaused(false);
     setOver(false);
     setSaved(false);
+    setSaveError(false);
     setRunId((id) => id + 1);
   };
 
@@ -171,13 +173,26 @@ export default function GamePlayer({ game }: { game: Game }) {
                 />
                 <button
                   className="btn yellow"
-                  onClick={() => {
-                    saveScore({ game: game.id, score, name });
-                    setSaved(true);
+                  onClick={async () => {
+                    try {
+                      setSaveError(false);
+                      await saveScore({ game: game.id, score, name });
+                      setSaved(true);
+                    } catch {
+                      setSaveError(true);
+                    }
                   }}
                 >
                   GUARDAR PUNTUACIÓN
                 </button>
+                {saveError && (
+                  <div
+                    className="toast-saved"
+                    style={{ color: "var(--magenta)" }}
+                  >
+                    ▸ NO SE PUDO GUARDAR, INTENTA DE NUEVO_
+                  </div>
+                )}
               </div>
             ) : (
               <div className="toast-saved">▸ PUNTUACIÓN GUARDADA_</div>

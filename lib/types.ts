@@ -6,8 +6,11 @@ export interface Game {
   cat: "ARCADE" | "PUZZLE" | "SHOOTER" | "VERSUS";
   cover: string; // clase CSS del fondo, ej. "cover-bricks"
   color: "cyan" | "magenta" | "yellow" | "green";
-  best: number;
   plays: string;
+}
+
+export interface GameWithBest extends Game {
+  best: number | null; // MAX(score) real desde `scores`; null si el juego no tiene partidas
 }
 
 export interface ScoreRow {
@@ -25,5 +28,4 @@ export interface SavedScore {
   game: string; // Game.id
   score: number;
   name: string;
-  at: number; // Date.now()
 }

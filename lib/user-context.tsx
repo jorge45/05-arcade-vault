@@ -1,13 +1,20 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
+import { createClient } from "./supabase/client";
 import type { SavedScore, User } from "./types";
 
 interface UserContextValue {
   user: User | null;
   login: (user: User | null) => void;
   signOut: () => void;
-  saveScore: (entry: Omit<SavedScore, "at">) => void;
+  saveScore: (entry: SavedScore) => Promise<void>;
 }
 
 const UserContext = createContext<UserContextValue | null>(null);
@@ -36,14 +43,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("av_user");
   };
 
-  const saveScore = (entry: Omit<SavedScore, "at">) => {
-    try {
-      const all: SavedScore[] = JSON.parse(localStorage.getItem("av_scores") || "[]");
-      all.push({ ...entry, at: Date.now() });
-      localStorage.setItem("av_scores", JSON.stringify(all));
-    } catch {
-      // localStorage no disponible (modo privado); el puntaje solo vive en memoria de esta sesión.
-    }
+  const saveScore = async (entry: SavedScore) => {
+    const supabase = createClient();
+    const { error } = await supabase.from("scores").insert({
+      game_id: entry.game,
+      name: entry.name,
+      score: entry.score,
+    });
+    if (error) throw error;
   };
 
   return (
