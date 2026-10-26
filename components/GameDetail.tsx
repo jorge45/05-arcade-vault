@@ -1,7 +1,13 @@
 import Link from "next/link";
-import type { Game, ScoreRow } from "@/lib/types";
+import type { GameWithBest, ScoreRow } from "@/lib/types";
 
-export default function GameDetail({ game, scores }: { game: Game; scores: ScoreRow[] }) {
+export default function GameDetail({
+  game,
+  scores,
+}: {
+  game: GameWithBest;
+  scores: ScoreRow[];
+}) {
   return (
     <div className="av-detail fade-in">
       <div>
@@ -26,16 +32,22 @@ export default function GameDetail({ game, scores }: { game: Game; scores: Score
               <div className="l">Mejor global</div>
               <div
                 className="v"
-                style={{ color: "var(--magenta)", textShadow: "0 0 6px rgba(255,0,110,0.5)" }}
+                style={{
+                  color: "var(--magenta)",
+                  textShadow: "0 0 6px rgba(255,0,110,0.5)",
+                }}
               >
-                {game.best.toLocaleString("es-ES")}
+                {game.best === null ? "—" : game.best.toLocaleString("es-ES")}
               </div>
             </div>
             <div>
               <div className="l">Dificultad</div>
               <div
                 className="v"
-                style={{ color: "var(--yellow)", textShadow: "0 0 6px rgba(245,255,0,0.5)" }}
+                style={{
+                  color: "var(--yellow)",
+                  textShadow: "0 0 6px rgba(245,255,0,0.5)",
+                }}
               >
                 ★ ★ ★ ☆ ☆
               </div>
@@ -55,15 +67,35 @@ export default function GameDetail({ game, scores }: { game: Game; scores: Score
       <aside>
         <div className="leaderboard">
           <h3>MEJORES PUNTUACIONES</h3>
+          {scores.length === 0 && (
+            <div
+              style={{
+                padding: "24px 0",
+                color: "var(--ink-faint)",
+                textAlign: "center",
+              }}
+            >
+              Aún no hay puntajes para este juego — ¡sé el primero!
+            </div>
+          )}
           {scores.map((r, i) => (
             <div
               key={r.name}
-              className={"lb-row" + (i === 0 ? " top1" : i === 1 ? " top2" : i === 2 ? " top3" : "")}
+              className={
+                "lb-row" +
+                (i === 0 ? " top1" : i === 1 ? " top2" : i === 2 ? " top3" : "")
+              }
             >
               <div className="rk">#{String(r.rank).padStart(2, "0")}</div>
               <div className="pl">
                 {r.name}
-                <div style={{ fontSize: 10, color: "var(--ink-faint)", letterSpacing: "0.1em" }}>
+                <div
+                  style={{
+                    fontSize: 10,
+                    color: "var(--ink-faint)",
+                    letterSpacing: "0.1em",
+                  }}
+                >
                   {r.date}
                 </div>
               </div>

@@ -1,6 +1,6 @@
 # SPEC 05 — Juego real "Asteroides" (primer juego jugable)
 
-> **Status:** Approved
+> **Status:** Implementado
 > **Depends on:** SPEC 01
 > **Date:** 2026-10-13
 > **Objective:** Portar el juego Asteroides del template standalone (`references/resources/templates/started-games/02-asteroids/game.js`) a un componente React, agregarlo a la Biblioteca como un juego nuevo con id `asteroides`, y conectarlo al Reproductor real (HUD, pausa, fin de partida y guardado de puntaje) en `/juego/asteroides/jugar`.
