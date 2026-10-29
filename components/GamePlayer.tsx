@@ -4,12 +4,20 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useUser } from "@/lib/user-context";
 import type { Game } from "@/lib/types";
-import AsteroidsGame, {
-  type AsteroidsGameHandle,
-} from "@/components/AsteroidsGame";
+import AsteroidsGame from "@/components/AsteroidsGame";
+import TetrisGame from "@/components/TetrisGame";
+
+type RealGameId = "asteroides" | "tetris";
+const REAL_GAME_IDS: RealGameId[] = ["asteroides", "tetris"];
+
+interface RealGameHandle {
+  forceGameOver: () => void;
+}
 
 export default function GamePlayer({ game }: { game: Game }) {
-  const isAsteroides = game.id === "asteroides";
+  const realGameId = REAL_GAME_IDS.includes(game.id as RealGameId)
+    ? (game.id as RealGameId)
+    : null;
   const { user, saveScore } = useUser();
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
@@ -20,10 +28,10 @@ export default function GamePlayer({ game }: { game: Game }) {
   const [saved, setSaved] = useState(false);
   const [saveError, setSaveError] = useState(false);
   const [runId, setRunId] = useState(0);
-  const asteroidsRef = useRef<AsteroidsGameHandle>(null);
+  const gameRef = useRef<RealGameHandle>(null);
 
   useEffect(() => {
-    if (isAsteroides || over || paused) return;
+    if (realGameId || over || paused) return;
     const t = setInterval(() => {
       setScore((s) => {
         const next = s + Math.floor(10 + Math.random() * 90);
@@ -32,11 +40,11 @@ export default function GamePlayer({ game }: { game: Game }) {
       });
     }, 220);
     return () => clearInterval(t);
-  }, [isAsteroides, over, paused]);
+  }, [realGameId, over, paused]);
 
   const endGame = () => {
-    if (isAsteroides) {
-      asteroidsRef.current?.forceGameOver();
+    if (realGameId) {
+      gameRef.current?.forceGameOver();
     } else {
       setOver(true);
     }
@@ -88,12 +96,26 @@ export default function GamePlayer({ game }: { game: Game }) {
         </div>
       </div>
 
-      <div className="crt">
-        <div className="crt-screen">
-          {isAsteroides ? (
+      <div className={`crt${realGameId === "tetris" ? " is-tetris" : ""}`}>
+        <div
+          className={`crt-screen${realGameId === "tetris" ? " is-tetris" : ""}`}
+        >
+          {realGameId === "asteroides" ? (
             <AsteroidsGame
               key={runId}
-              ref={asteroidsRef}
+              ref={gameRef}
+              paused={paused}
+              onStats={(stats) => {
+                setScore(stats.score);
+                setLives(stats.lives);
+                setLevel(stats.level);
+              }}
+              onGameOver={() => setOver(true)}
+            />
+          ) : realGameId === "tetris" ? (
+            <TetrisGame
+              key={runId}
+              ref={gameRef}
               paused={paused}
               onStats={(stats) => {
                 setScore(stats.score);
@@ -140,7 +162,7 @@ export default function GamePlayer({ game }: { game: Game }) {
           <span>{game.title} · CRT-83 · 60 HZ</span>
           <span>CARGA · 1MB</span>
         </div>
-        {isAsteroides && (
+        {realGameId === "asteroides" && (
           <div
             className="mono"
             style={{
@@ -152,6 +174,20 @@ export default function GamePlayer({ game }: { game: Game }) {
             }}
           >
             ← → ROTAR · ↑ PROPULSAR · ESPACIO DISPARAR
+          </div>
+        )}
+        {realGameId === "tetris" && (
+          <div
+            className="mono"
+            style={{
+              fontSize: 11,
+              color: "var(--ink-dim)",
+              letterSpacing: "0.1em",
+              textAlign: "center",
+              marginTop: 10,
+            }}
+          >
+            ← → MOVER · ↑ / X ROTAR · ↓ CAÍDA SUAVE · ESPACIO CAÍDA RÁPIDA
           </div>
         )}
       </div>
