@@ -865,6 +865,26 @@ a {
   text-shadow: 0 0 10px var(--cyan);
 }
 
+.cover-tetris {
+  background: linear-gradient(180deg, #1a1400, #0a0a18 70%);
+}
+.cover-tetris::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(245, 255, 0, 0.1) 0 1px,
+      transparent 1px 40px
+    ),
+    linear-gradient(var(--yellow), var(--yellow)) 36% 28% / 14% 14% no-repeat,
+    linear-gradient(var(--yellow), var(--yellow)) 50% 28% / 14% 14% no-repeat,
+    linear-gradient(var(--yellow), var(--yellow)) 50% 42% / 14% 14% no-repeat,
+    linear-gradient(var(--yellow), var(--yellow)) 64% 42% / 14% 14% no-repeat;
+  filter: drop-shadow(0 0 8px var(--yellow));
+}
+
 /* ===== detail screen ===== */
 .av-detail {
   display: grid;
@@ -1081,6 +1101,13 @@ a {
   box-shadow:
     inset 0 0 60px rgba(0, 0, 0, 0.9),
     inset 0 0 20px rgba(0, 245, 255, 0.15);
+}
+.crt.is-tetris {
+  max-width: 528px;
+  margin: 0 auto;
+}
+.crt-screen.is-tetris {
+  aspect-ratio: 4 / 5;
 }
 .crt-screen::after {
   content: "";
