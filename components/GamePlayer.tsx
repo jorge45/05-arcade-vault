@@ -6,9 +6,10 @@ import { useUser } from "@/lib/user-context";
 import type { Game } from "@/lib/types";
 import AsteroidsGame from "@/components/AsteroidsGame";
 import TetrisGame from "@/components/TetrisGame";
+import ArkanoidGame from "@/components/ArkanoidGame";
 
-type RealGameId = "asteroides" | "tetris";
-const REAL_GAME_IDS: RealGameId[] = ["asteroides", "tetris"];
+type RealGameId = "asteroides" | "tetris" | "arkanoid";
+const REAL_GAME_IDS: RealGameId[] = ["asteroides", "tetris", "arkanoid"];
 
 interface RealGameHandle {
   forceGameOver: () => void;
@@ -96,7 +97,9 @@ export default function GamePlayer({ game }: { game: Game }) {
         </div>
       </div>
 
-      <div className={`crt${realGameId === "tetris" ? " is-tetris" : ""}`}>
+      <div
+        className={`crt${realGameId === "tetris" ? " is-tetris" : realGameId === "arkanoid" ? " is-arkanoid" : ""}`}
+      >
         <div
           className={`crt-screen${realGameId === "tetris" ? " is-tetris" : ""}`}
         >
@@ -114,6 +117,18 @@ export default function GamePlayer({ game }: { game: Game }) {
             />
           ) : realGameId === "tetris" ? (
             <TetrisGame
+              key={runId}
+              ref={gameRef}
+              paused={paused}
+              onStats={(stats) => {
+                setScore(stats.score);
+                setLives(stats.lives);
+                setLevel(stats.level);
+              }}
+              onGameOver={() => setOver(true)}
+            />
+          ) : realGameId === "arkanoid" ? (
+            <ArkanoidGame
               key={runId}
               ref={gameRef}
               paused={paused}
@@ -188,6 +203,20 @@ export default function GamePlayer({ game }: { game: Game }) {
             }}
           >
             ← → MOVER · ↑ / X ROTAR · ↓ CAÍDA SUAVE · ESPACIO CAÍDA RÁPIDA
+          </div>
+        )}
+        {realGameId === "arkanoid" && (
+          <div
+            className="mono"
+            style={{
+              fontSize: 11,
+              color: "var(--ink-dim)",
+              letterSpacing: "0.1em",
+              textAlign: "center",
+              marginTop: 10,
+            }}
+          >
+            MOUSE O ← → MOVER PALETA
           </div>
         )}
       </div>
