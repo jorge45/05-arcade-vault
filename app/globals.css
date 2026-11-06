@@ -885,6 +885,29 @@ a {
   filter: drop-shadow(0 0 8px var(--yellow));
 }
 
+.cover-arkanoid {
+  background: linear-gradient(170deg, #241a00, #0a0a18 70%);
+}
+.cover-arkanoid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--yellow), var(--yellow)) 14% 22% / 12% 8% no-repeat,
+    linear-gradient(var(--cyan), var(--cyan)) 28% 22% / 12% 8% no-repeat,
+    linear-gradient(var(--magenta), var(--magenta)) 42% 22% / 12% 8% no-repeat,
+    linear-gradient(var(--green), var(--green)) 56% 22% / 12% 8% no-repeat,
+    linear-gradient(var(--yellow), var(--yellow)) 70% 22% / 12% 8% no-repeat,
+    linear-gradient(var(--cyan), var(--cyan)) 14% 32% / 12% 8% no-repeat,
+    linear-gradient(var(--magenta), var(--magenta)) 28% 32% / 12% 8% no-repeat,
+    linear-gradient(var(--yellow), var(--yellow)) 42% 32% / 12% 8% no-repeat,
+    linear-gradient(var(--green), var(--green)) 56% 32% / 12% 8% no-repeat,
+    linear-gradient(var(--cyan), var(--cyan)) 70% 32% / 12% 8% no-repeat,
+    radial-gradient(circle at 50% 62%, #f0f0f0 0 4px, transparent 5px),
+    linear-gradient(#f0f0f0, #f0f0f0) 42% 80% / 16% 4% no-repeat;
+  filter: drop-shadow(0 0 6px var(--yellow));
+}
+
 /* ===== detail screen ===== */
 .av-detail {
   display: grid;
@@ -1108,6 +1131,10 @@ a {
 }
 .crt-screen.is-tetris {
   aspect-ratio: 4 / 5;
+}
+.crt.is-arkanoid {
+  max-width: 640px;
+  margin: 0 auto;
 }
 .crt-screen::after {
   content: "";
