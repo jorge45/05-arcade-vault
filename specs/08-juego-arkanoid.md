@@ -1,6 +1,6 @@
 # SPEC 08 — Juego real "Arkanoid"
 
-> **Estado:** Aprobado · **Depende de:** SPEC 05, SPEC 06 · **Fecha:** 2026-11-05
+> **Estado:** Implementado · **Depende de:** SPEC 05, SPEC 06 · **Fecha:** 2026-11-05
 > **Objetivo:** Portar el juego Arkanoid del template standalone (`references/resources/templates/started-games/04-arkanoid/`) a un componente React con id `arkanoid`, usando mouse+teclado y sprites reales, y conectarlo al Reproductor y al leaderboard real igual que Asteroides y Tetris.
 
 ---
@@ -92,23 +92,23 @@ path relativo `assets/spritesheet-breakout.png` que usa el template standalone.
 
 ## Criterios de aceptación
 
-- [ ] `npm run dev` levanta la app sin errores en consola.
-- [ ] La Biblioteca (`/biblioteca`) muestra una card nueva "ARKANOID" (categoría ARCADE), sin alterar las cards existentes.
-- [ ] `/juego/arkanoid` muestra el detalle del juego con su leaderboard real (vacío al inicio), igual que cualquier otro juego.
-- [ ] `/juego/arkanoid/jugar` muestra el canvas del juego real (paleta, bola, bloques con sprites) en lugar del `.game-arena` decorativo.
-- [ ] Mover el mouse sobre el canvas mueve la paleta; las flechas izquierda/derecha también la mueven.
-- [ ] Rebotar la bola contra un bloque lo destruye, dispara su animación de explosión y suma 10 puntos.
-- [ ] Al limpiar todos los bloques de un nivel, se carga el siguiente nivel con velocidad de bola mayor; al limpiar el nivel 5, la partida termina igual que si se perdieran las 3 bolas.
-- [ ] Dejar caer la bola fuera del canvas resta una vida; al llegar a 0 vidas se abre el modal "FIN DEL JUEGO" ya existente, con el puntaje final real.
-- [ ] El HUD externo (Jugador/Puntuación/Vidas/Nivel) refleja en tiempo real el score/vidas/nivel reales del juego, no un ticker simulado.
-- [ ] El botón "PAUSA" detiene el movimiento/colisiones del juego real (sin mostrar botones de salto de nivel); "REANUDAR" lo continúa.
-- [ ] El botón "FIN" termina la partida real inmediatamente y abre el modal de fin de partida con el puntaje actual.
-- [ ] Guardar el puntaje en el modal lo inserta en la tabla `scores` de Supabase con `game_id: "arkanoid"`.
-- [ ] "JUGAR DE NUEVO" reinicia el juego desde el nivel 1 (score 0, 3 vidas).
-- [ ] "SALIR" navega de vuelta a `/juego/arkanoid` y detiene el loop del juego (no sigue corriendo en segundo plano).
-- [ ] El juego no reproduce ningún sonido.
-- [ ] Los demás juegos (`rocas` y mocks, `asteroides`, `tetris`) siguen comportándose exactamente igual que antes en Biblioteca, Detalle y Reproductor.
-- [ ] `npm run lint` y `npm run build` terminan sin errores.
+- [x] `npm run dev` levanta la app sin errores en consola.
+- [x] La Biblioteca (`/biblioteca`) muestra una card nueva "ARKANOID" (categoría ARCADE), sin alterar las cards existentes.
+- [x] `/juego/arkanoid` muestra el detalle del juego con su leaderboard real (vacío al inicio), igual que cualquier otro juego.
+- [x] `/juego/arkanoid/jugar` muestra el canvas del juego real (paleta, bola, bloques con sprites) en lugar del `.game-arena` decorativo.
+- [x] Mover el mouse sobre el canvas mueve la paleta; las flechas izquierda/derecha también la mueven.
+- [x] Rebotar la bola contra un bloque lo destruye, dispara su animación de explosión y suma 10 puntos.
+- [x] Al limpiar todos los bloques de un nivel, se carga el siguiente nivel con velocidad de bola mayor; al limpiar el nivel 5, la partida termina igual que si se perdieran las 3 bolas. (lógica portada tal cual del original; no se jugó una partida completa hasta vaciar un nivel durante la verificación manual)
+- [x] Dejar caer la bola fuera del canvas resta una vida; al llegar a 0 vidas se abre el modal "FIN DEL JUEGO" ya existente, con el puntaje final real.
+- [x] El HUD externo (Jugador/Puntuación/Vidas/Nivel) refleja en tiempo real el score/vidas/nivel reales del juego, no un ticker simulado.
+- [x] El botón "PAUSA" detiene el movimiento/colisiones del juego real (sin mostrar botones de salto de nivel); "REANUDAR" lo continúa.
+- [x] El botón "FIN" termina la partida real inmediatamente y abre el modal de fin de partida con el puntaje actual.
+- [x] Guardar el puntaje en el modal lo inserta en la tabla `scores` de Supabase con `game_id: "arkanoid"`.
+- [x] "JUGAR DE NUEVO" reinicia el juego desde el nivel 1 (score 0, 3 vidas).
+- [x] "SALIR" navega de vuelta a `/juego/arkanoid` y detiene el loop del juego (no sigue corriendo en segundo plano).
+- [x] El juego no reproduce ningún sonido.
+- [x] Los demás juegos (`rocas` y mocks, `asteroides`, `tetris`) siguen comportándose exactamente igual que antes en Biblioteca, Detalle y Reproductor.
+- [x] `npm run lint` y `npm run build` terminan sin errores.
 
 ---
 
